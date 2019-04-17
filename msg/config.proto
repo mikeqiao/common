@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package msg;
+
+message DataBaseConfig
+{
+	int64 userCreatId = 1;
+	int64 groupCreatId = 2;
+	int64 ItemCreatId = 3;
+}

@@ -1,0 +1,46 @@
+syntax = "proto3";  //指定版本，必须要写（proto3、proto2）  
+
+package msg;
+
+
+message DataUserAccount
+{
+	int64 userUID = 1;
+	string phoneID = 2;
+	string accountID = 3;
+	string password = 4;
+	string email = 5;
+	
+}
+
+message DataUserBase
+{
+	int64 userUID = 1;
+	int64 playerID = 2;
+	double posx = 3;
+	double posy = 4;
+	string head = 5;
+	string nick = 6;
+	string city = 7;
+	int32 sex = 8; //1 男 2 女
+	int32 age = 9;
+	int32 level = 10;
+}
+
+message DataUserAdd
+{
+	int64 userID = 1;
+	int64 coin = 2;
+	int64 gold = 3;
+	int32 viplevel = 4;
+}
+
+message DataUserBag
+{
+	int64 userId = 1;
+	int64 itemUID = 2;
+	int64 itemId = 3;
+	int64 count = 4;
+	int64 createTime = 5;
+	int32 pos = 6;//包裹的位置
+}

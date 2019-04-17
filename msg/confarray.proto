@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package msg;
+
+import "config.proto";
+
+message ArrayDataBaseConfig
+{
+	repeated DataBaseConfig data = 1;
+}

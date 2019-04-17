@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package msg;
+
+import "base.proto";
+
+message ArrayDataUserBag
+{
+	repeated DataUserBag data = 1;
+}
