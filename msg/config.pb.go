@@ -222,15 +222,15 @@ func (m *DataBaseConfig) RedisSet(key interface{}) (table string, data []interfa
 	}
 	return
 }
-func (m *DataBaseConfig) RedisGet(key interface{}) (table string, data []interface{}) {
+func (m *DataBaseConfig) RedisGet(key interface{}) (table string, data []string) {
 	table = "DataBaseConfig" + "_" + fmt.Sprint(key)
 	if len(m.XXX_Update) == 0 {
-		data = make([]interface{}, 3)
+		data = make([]string, 3)
 		data[0] = "UserCreatId"
 		data[1] = "GroupCreatId"
 		data[2] = "ItemCreatId"
 	} else {
-		data = make([]interface{}, len(m.XXX_Update))
+		data = make([]string, len(m.XXX_Update))
 		j := 0
 		for k, _ := range m.XXX_Update {
 			data[j] = k
@@ -239,9 +239,9 @@ func (m *DataBaseConfig) RedisGet(key interface{}) (table string, data []interfa
 	}
 	return
 }
-func (m *DataBaseConfig) RedisDel(key interface{}) (table string, data []interface{}) {
+func (m *DataBaseConfig) RedisDel(key interface{}) (table string, data []string) {
 	table = "DataBaseConfig" + "_" + fmt.Sprint(key)
-	data = make([]interface{}, len(m.XXX_Update))
+	data = make([]string, len(m.XXX_Update))
 	j := 0
 	for k, _ := range m.XXX_Update {
 		data[j] = k

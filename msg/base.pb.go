@@ -238,17 +238,17 @@ func (m *DataUserAccount) RedisSet(key interface{}) (table string, data []interf
 	}
 	return
 }
-func (m *DataUserAccount) RedisGet(key interface{}) (table string, data []interface{}) {
+func (m *DataUserAccount) RedisGet(key interface{}) (table string, data []string) {
 	table = "DataUserAccount" + "_" + fmt.Sprint(key)
 	if len(m.XXX_Update) == 0 {
-		data = make([]interface{}, 5)
+		data = make([]string, 5)
 		data[0] = "UserUID"
 		data[1] = "PhoneID"
 		data[2] = "AccountID"
 		data[3] = "Password"
 		data[4] = "Email"
 	} else {
-		data = make([]interface{}, len(m.XXX_Update))
+		data = make([]string, len(m.XXX_Update))
 		j := 0
 		for k, _ := range m.XXX_Update {
 			data[j] = k
@@ -257,9 +257,9 @@ func (m *DataUserAccount) RedisGet(key interface{}) (table string, data []interf
 	}
 	return
 }
-func (m *DataUserAccount) RedisDel(key interface{}) (table string, data []interface{}) {
+func (m *DataUserAccount) RedisDel(key interface{}) (table string, data []string) {
 	table = "DataUserAccount" + "_" + fmt.Sprint(key)
-	data = make([]interface{}, len(m.XXX_Update))
+	data = make([]string, len(m.XXX_Update))
 	j := 0
 	for k, _ := range m.XXX_Update {
 		data[j] = k
@@ -725,10 +725,10 @@ func (m *DataUserBase) RedisSet(key interface{}) (table string, data []interface
 	}
 	return
 }
-func (m *DataUserBase) RedisGet(key interface{}) (table string, data []interface{}) {
+func (m *DataUserBase) RedisGet(key interface{}) (table string, data []string) {
 	table = "DataUserBase" + "_" + fmt.Sprint(key)
 	if len(m.XXX_Update) == 0 {
-		data = make([]interface{}, 10)
+		data = make([]string, 10)
 		data[0] = "UserUID"
 		data[1] = "PlayerID"
 		data[2] = "Posx"
@@ -740,7 +740,7 @@ func (m *DataUserBase) RedisGet(key interface{}) (table string, data []interface
 		data[8] = "Age"
 		data[9] = "Level"
 	} else {
-		data = make([]interface{}, len(m.XXX_Update))
+		data = make([]string, len(m.XXX_Update))
 		j := 0
 		for k, _ := range m.XXX_Update {
 			data[j] = k
@@ -749,9 +749,9 @@ func (m *DataUserBase) RedisGet(key interface{}) (table string, data []interface
 	}
 	return
 }
-func (m *DataUserBase) RedisDel(key interface{}) (table string, data []interface{}) {
+func (m *DataUserBase) RedisDel(key interface{}) (table string, data []string) {
 	table = "DataUserBase" + "_" + fmt.Sprint(key)
-	data = make([]interface{}, len(m.XXX_Update))
+	data = make([]string, len(m.XXX_Update))
 	j := 0
 	for k, _ := range m.XXX_Update {
 		data[j] = k
@@ -1317,16 +1317,16 @@ func (m *DataUserAdd) RedisSet(key interface{}) (table string, data []interface{
 	}
 	return
 }
-func (m *DataUserAdd) RedisGet(key interface{}) (table string, data []interface{}) {
+func (m *DataUserAdd) RedisGet(key interface{}) (table string, data []string) {
 	table = "DataUserAdd" + "_" + fmt.Sprint(key)
 	if len(m.XXX_Update) == 0 {
-		data = make([]interface{}, 4)
+		data = make([]string, 4)
 		data[0] = "UserID"
 		data[1] = "Coin"
 		data[2] = "Gold"
 		data[3] = "Viplevel"
 	} else {
-		data = make([]interface{}, len(m.XXX_Update))
+		data = make([]string, len(m.XXX_Update))
 		j := 0
 		for k, _ := range m.XXX_Update {
 			data[j] = k
@@ -1335,9 +1335,9 @@ func (m *DataUserAdd) RedisGet(key interface{}) (table string, data []interface{
 	}
 	return
 }
-func (m *DataUserAdd) RedisDel(key interface{}) (table string, data []interface{}) {
+func (m *DataUserAdd) RedisDel(key interface{}) (table string, data []string) {
 	table = "DataUserAdd" + "_" + fmt.Sprint(key)
-	data = make([]interface{}, len(m.XXX_Update))
+	data = make([]string, len(m.XXX_Update))
 	j := 0
 	for k, _ := range m.XXX_Update {
 		data[j] = k
@@ -1733,10 +1733,10 @@ func (m *DataUserBag) RedisSet(key interface{}) (table string, data []interface{
 	}
 	return
 }
-func (m *DataUserBag) RedisGet(key interface{}) (table string, data []interface{}) {
+func (m *DataUserBag) RedisGet(key interface{}) (table string, data []string) {
 	table = "DataUserBag" + "_" + fmt.Sprint(key)
 	if len(m.XXX_Update) == 0 {
-		data = make([]interface{}, 6)
+		data = make([]string, 6)
 		data[0] = "UserId"
 		data[1] = "ItemUID"
 		data[2] = "ItemId"
@@ -1744,7 +1744,7 @@ func (m *DataUserBag) RedisGet(key interface{}) (table string, data []interface{
 		data[4] = "CreateTime"
 		data[5] = "Pos"
 	} else {
-		data = make([]interface{}, len(m.XXX_Update))
+		data = make([]string, len(m.XXX_Update))
 		j := 0
 		for k, _ := range m.XXX_Update {
 			data[j] = k
@@ -1753,9 +1753,9 @@ func (m *DataUserBag) RedisGet(key interface{}) (table string, data []interface{
 	}
 	return
 }
-func (m *DataUserBag) RedisDel(key interface{}) (table string, data []interface{}) {
+func (m *DataUserBag) RedisDel(key interface{}) (table string, data []string) {
 	table = "DataUserBag" + "_" + fmt.Sprint(key)
-	data = make([]interface{}, len(m.XXX_Update))
+	data = make([]string, len(m.XXX_Update))
 	j := 0
 	for k, _ := range m.XXX_Update {
 		data[j] = k
