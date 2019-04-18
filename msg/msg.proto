@@ -1,0 +1,46 @@
+syntax = "proto3";  //指定版本，必须要写（proto3、proto2）  
+
+package msg;
+
+import "base.proto";
+
+message CUserLoginRQ
+{
+	int32 type = 1;
+	string accountID = 2;
+	string password = 3;
+}
+
+message CUserLoginRS
+{
+	int32 result = 1;
+	string accountID = 2;
+	string password = 3;
+	DataUserBase user = 4;
+}
+
+message CCreateAccountRQ
+{
+	int32 type = 1;
+	string accountID = 2;
+	string password = 3;
+}
+
+message CCreateAccountRS
+{
+	int32 result = 1;
+	string accountID = 2;
+	string password = 3;
+	DataUserBase user = 4;
+}
+
+message CCreateUserRQ
+{
+	DataUserBase user = 1;
+}
+
+message CCreateUserRS
+{
+	int32 result = 1;
+	DataUserBase user = 2;
+}

@@ -30,4 +30,10 @@ const (
 //msg c-s
 const (
 	_CStype uint16 = 30000 + iota
+	CUserLoginRQ
+	CUserLoginRS
+	CCreateAccountRQ
+	CCreateAccountRS
+	CCreateUserRQ
+	CCreateUserRS
 )
