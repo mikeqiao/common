@@ -1,7 +1,7 @@
 package db
 
 import (
-	"github.com/mikeqiao/ant/db/mysql"
+	"github.com/mikeqiao/newant/db/mysql"
 )
 
 var DB *mysql.STypeMap

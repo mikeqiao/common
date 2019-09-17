@@ -1,15 +1,16 @@
 package p
 
 import (
-	pb "github.com/mikeqiao/ant/net/protobuf"
-	"github.com/mikeqiao/ant/network"
 	ftype "github.com/mikeqiao/common/moudle/functype"
 	"github.com/mikeqiao/common/msg"
 	"github.com/mikeqiao/common/msgtype"
+	pb "github.com/mikeqiao/newant/net/protobuf"
+	"github.com/mikeqiao/newant/network"
 )
 
 func SetP() {
 	p := pb.NewProcessor()
+	p.SetByteOrder(true)
 	network.P.AddData(1, p)
 	//base
 	p.Register(&msg.DataUserAccount{}, msgtype.DataUserAccount)

@@ -62,7 +62,7 @@ func (m *DataUserAccount) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_DataUserAccount proto.InternalMessageInfo
 
-func (m *DataUserAccount) GetName() string {
+func (m *DataUserAccount) GetTableName() string {
 	var buff bytes.Buffer
 	buff.WriteString("DataUserAccount")
 	data := strconv.Quote(buff.String())
@@ -91,19 +91,36 @@ func (m *DataUserAccount) DBInsert() string {
 	buff.WriteString("INSERT INTO ")
 	buff.WriteString("DataUserAccount")
 	buff.WriteString("( ")
-	i := 0
 	var key bytes.Buffer
 	var value bytes.Buffer
-	for k, v := range m.XXX_Update {
-		if i > 0 {
-			key.WriteString(", ")
-			value.WriteString(", ")
-		}
-		key.WriteString(k)
-		d := fmt.Sprint(v)
-		value.WriteString(d)
-		i += 1
-	}
+	var d string
+	key.WriteString("UserUID")
+	d = fmt.Sprint(m.UserUID)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("PhoneID")
+	d = fmt.Sprint(m.PhoneID)
+	d = strconv.Quote(d)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("AccountID")
+	d = fmt.Sprint(m.AccountID)
+	d = strconv.Quote(d)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("Password")
+	d = fmt.Sprint(m.Password)
+	d = strconv.Quote(d)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("Email")
+	d = fmt.Sprint(m.Email)
+	d = strconv.Quote(d)
+	value.WriteString(d)
 	buff.WriteString(key.String())
 	buff.WriteString(" ) VALUES ( ")
 	buff.WriteString(value.String())
@@ -227,14 +244,58 @@ func (m *DataUserAccount) GetFieldID(ks []string) (p []interface{}) {
 	}
 	return
 }
+func (m *DataUserAccount) RedisInsert(key interface{}) (table string, data []interface{}) {
+	table = "DataUserAccount" + "_" + fmt.Sprint(key)
+	data = make([]interface{}, 2*5)
+	j := 0
+	data[j] = "UserUID"
+	data[j+1] = m.UserUID
+	j += 2
+	data[j] = "PhoneID"
+	data[j+1] = m.PhoneID
+	j += 2
+	data[j] = "AccountID"
+	data[j+1] = m.AccountID
+	j += 2
+	data[j] = "Password"
+	data[j+1] = m.Password
+	j += 2
+	data[j] = "Email"
+	data[j+1] = m.Email
+	j += 2
+	return
+}
 func (m *DataUserAccount) RedisSet(key interface{}) (table string, data []interface{}) {
 	table = "DataUserAccount" + "_" + fmt.Sprint(key)
-	data = make([]interface{}, 2*len(m.XXX_Update2))
-	j := 0
-	for k, v := range m.XXX_Update2 {
-		data[j] = k
-		data[j+1] = v
+	if nil == m.XXX_Update2 {
+		m.XXX_Update2 = make(map[string]interface{})
+	}
+	if len(m.XXX_Update2) == 0 {
+		data = make([]interface{}, 2*5)
+		j := 0
+		data[j] = "UserUID"
+		data[j+1] = m.UserUID
 		j += 2
+		data[j] = "PhoneID"
+		data[j+1] = m.PhoneID
+		j += 2
+		data[j] = "AccountID"
+		data[j+1] = m.AccountID
+		j += 2
+		data[j] = "Password"
+		data[j+1] = m.Password
+		j += 2
+		data[j] = "Email"
+		data[j+1] = m.Email
+		j += 2
+	} else {
+		data = make([]interface{}, 2*len(m.XXX_Update2))
+		j := 0
+		for k, v := range m.XXX_Update2 {
+			data[j] = k
+			data[j+1] = v
+			j += 2
+		}
 	}
 	return
 }
@@ -267,7 +328,11 @@ func (m *DataUserAccount) RedisDel(key interface{}) (table string, data []string
 	}
 	return
 }
-func (m *DataUserAccount) DoUpdate() (sql, table string, data []interface{}) {
+func (m *DataUserAccount) DoUpdate() (do bool, sql, table string, data []interface{}) {
+	if len(m.XXX_Update) == 0 {
+		do = false
+		return
+	}
 	var buff bytes.Buffer
 	buff.WriteString("UPDATE ")
 	buff.WriteString("DataUserAccount")
@@ -308,6 +373,7 @@ func (m *DataUserAccount) DoUpdate() (sql, table string, data []interface{}) {
 		i += 1
 	}
 	sql = buff.String()
+	do = true
 	return
 }
 
@@ -514,7 +580,7 @@ func (m *DataUserBase) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_DataUserBase proto.InternalMessageInfo
 
-func (m *DataUserBase) GetName() string {
+func (m *DataUserBase) GetTableName() string {
 	var buff bytes.Buffer
 	buff.WriteString("DataUserBase")
 	data := strconv.Quote(buff.String())
@@ -543,19 +609,60 @@ func (m *DataUserBase) DBInsert() string {
 	buff.WriteString("INSERT INTO ")
 	buff.WriteString("DataUserBase")
 	buff.WriteString("( ")
-	i := 0
 	var key bytes.Buffer
 	var value bytes.Buffer
-	for k, v := range m.XXX_Update {
-		if i > 0 {
-			key.WriteString(", ")
-			value.WriteString(", ")
-		}
-		key.WriteString(k)
-		d := fmt.Sprint(v)
-		value.WriteString(d)
-		i += 1
-	}
+	var d string
+	key.WriteString("UserUID")
+	d = fmt.Sprint(m.UserUID)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("PlayerID")
+	d = fmt.Sprint(m.PlayerID)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("Posx")
+	d = fmt.Sprint(m.Posx)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("Posy")
+	d = fmt.Sprint(m.Posy)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("Head")
+	d = fmt.Sprint(m.Head)
+	d = strconv.Quote(d)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("Nick")
+	d = fmt.Sprint(m.Nick)
+	d = strconv.Quote(d)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("City")
+	d = fmt.Sprint(m.City)
+	d = strconv.Quote(d)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("Sex")
+	d = fmt.Sprint(m.Sex)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("Age")
+	d = fmt.Sprint(m.Age)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("Level")
+	d = fmt.Sprint(m.Level)
+	value.WriteString(d)
 	buff.WriteString(key.String())
 	buff.WriteString(" ) VALUES ( ")
 	buff.WriteString(value.String())
@@ -714,14 +821,88 @@ func (m *DataUserBase) GetFieldID(ks []string) (p []interface{}) {
 	}
 	return
 }
+func (m *DataUserBase) RedisInsert(key interface{}) (table string, data []interface{}) {
+	table = "DataUserBase" + "_" + fmt.Sprint(key)
+	data = make([]interface{}, 2*10)
+	j := 0
+	data[j] = "UserUID"
+	data[j+1] = m.UserUID
+	j += 2
+	data[j] = "PlayerID"
+	data[j+1] = m.PlayerID
+	j += 2
+	data[j] = "Posx"
+	data[j+1] = m.Posx
+	j += 2
+	data[j] = "Posy"
+	data[j+1] = m.Posy
+	j += 2
+	data[j] = "Head"
+	data[j+1] = m.Head
+	j += 2
+	data[j] = "Nick"
+	data[j+1] = m.Nick
+	j += 2
+	data[j] = "City"
+	data[j+1] = m.City
+	j += 2
+	data[j] = "Sex"
+	data[j+1] = m.Sex
+	j += 2
+	data[j] = "Age"
+	data[j+1] = m.Age
+	j += 2
+	data[j] = "Level"
+	data[j+1] = m.Level
+	j += 2
+	return
+}
 func (m *DataUserBase) RedisSet(key interface{}) (table string, data []interface{}) {
 	table = "DataUserBase" + "_" + fmt.Sprint(key)
-	data = make([]interface{}, 2*len(m.XXX_Update2))
-	j := 0
-	for k, v := range m.XXX_Update2 {
-		data[j] = k
-		data[j+1] = v
+	if nil == m.XXX_Update2 {
+		m.XXX_Update2 = make(map[string]interface{})
+	}
+	if len(m.XXX_Update2) == 0 {
+		data = make([]interface{}, 2*10)
+		j := 0
+		data[j] = "UserUID"
+		data[j+1] = m.UserUID
 		j += 2
+		data[j] = "PlayerID"
+		data[j+1] = m.PlayerID
+		j += 2
+		data[j] = "Posx"
+		data[j+1] = m.Posx
+		j += 2
+		data[j] = "Posy"
+		data[j+1] = m.Posy
+		j += 2
+		data[j] = "Head"
+		data[j+1] = m.Head
+		j += 2
+		data[j] = "Nick"
+		data[j+1] = m.Nick
+		j += 2
+		data[j] = "City"
+		data[j+1] = m.City
+		j += 2
+		data[j] = "Sex"
+		data[j+1] = m.Sex
+		j += 2
+		data[j] = "Age"
+		data[j+1] = m.Age
+		j += 2
+		data[j] = "Level"
+		data[j+1] = m.Level
+		j += 2
+	} else {
+		data = make([]interface{}, 2*len(m.XXX_Update2))
+		j := 0
+		for k, v := range m.XXX_Update2 {
+			data[j] = k
+			data[j+1] = v
+			j += 2
+		}
 	}
 	return
 }
@@ -759,7 +940,11 @@ func (m *DataUserBase) RedisDel(key interface{}) (table string, data []string) {
 	}
 	return
 }
-func (m *DataUserBase) DoUpdate() (sql, table string, data []interface{}) {
+func (m *DataUserBase) DoUpdate() (do bool, sql, table string, data []interface{}) {
+	if len(m.XXX_Update) == 0 {
+		do = false
+		return
+	}
 	var buff bytes.Buffer
 	buff.WriteString("UPDATE ")
 	buff.WriteString("DataUserBase")
@@ -800,6 +985,7 @@ func (m *DataUserBase) DoUpdate() (sql, table string, data []interface{}) {
 		i += 1
 	}
 	sql = buff.String()
+	do = true
 	return
 }
 
@@ -1148,7 +1334,7 @@ func (m *DataUserAdd) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_DataUserAdd proto.InternalMessageInfo
 
-func (m *DataUserAdd) GetName() string {
+func (m *DataUserAdd) GetTableName() string {
 	var buff bytes.Buffer
 	buff.WriteString("DataUserAdd")
 	data := strconv.Quote(buff.String())
@@ -1177,19 +1363,27 @@ func (m *DataUserAdd) DBInsert() string {
 	buff.WriteString("INSERT INTO ")
 	buff.WriteString("DataUserAdd")
 	buff.WriteString("( ")
-	i := 0
 	var key bytes.Buffer
 	var value bytes.Buffer
-	for k, v := range m.XXX_Update {
-		if i > 0 {
-			key.WriteString(", ")
-			value.WriteString(", ")
-		}
-		key.WriteString(k)
-		d := fmt.Sprint(v)
-		value.WriteString(d)
-		i += 1
-	}
+	var d string
+	key.WriteString("UserID")
+	d = fmt.Sprint(m.UserID)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("Coin")
+	d = fmt.Sprint(m.Coin)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("Gold")
+	d = fmt.Sprint(m.Gold)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("Viplevel")
+	d = fmt.Sprint(m.Viplevel)
+	value.WriteString(d)
 	buff.WriteString(key.String())
 	buff.WriteString(" ) VALUES ( ")
 	buff.WriteString(value.String())
@@ -1306,14 +1500,52 @@ func (m *DataUserAdd) GetFieldID(ks []string) (p []interface{}) {
 	}
 	return
 }
+func (m *DataUserAdd) RedisInsert(key interface{}) (table string, data []interface{}) {
+	table = "DataUserAdd" + "_" + fmt.Sprint(key)
+	data = make([]interface{}, 2*4)
+	j := 0
+	data[j] = "UserID"
+	data[j+1] = m.UserID
+	j += 2
+	data[j] = "Coin"
+	data[j+1] = m.Coin
+	j += 2
+	data[j] = "Gold"
+	data[j+1] = m.Gold
+	j += 2
+	data[j] = "Viplevel"
+	data[j+1] = m.Viplevel
+	j += 2
+	return
+}
 func (m *DataUserAdd) RedisSet(key interface{}) (table string, data []interface{}) {
 	table = "DataUserAdd" + "_" + fmt.Sprint(key)
-	data = make([]interface{}, 2*len(m.XXX_Update2))
-	j := 0
-	for k, v := range m.XXX_Update2 {
-		data[j] = k
-		data[j+1] = v
+	if nil == m.XXX_Update2 {
+		m.XXX_Update2 = make(map[string]interface{})
+	}
+	if len(m.XXX_Update2) == 0 {
+		data = make([]interface{}, 2*4)
+		j := 0
+		data[j] = "UserID"
+		data[j+1] = m.UserID
 		j += 2
+		data[j] = "Coin"
+		data[j+1] = m.Coin
+		j += 2
+		data[j] = "Gold"
+		data[j+1] = m.Gold
+		j += 2
+		data[j] = "Viplevel"
+		data[j+1] = m.Viplevel
+		j += 2
+	} else {
+		data = make([]interface{}, 2*len(m.XXX_Update2))
+		j := 0
+		for k, v := range m.XXX_Update2 {
+			data[j] = k
+			data[j+1] = v
+			j += 2
+		}
 	}
 	return
 }
@@ -1345,7 +1577,11 @@ func (m *DataUserAdd) RedisDel(key interface{}) (table string, data []string) {
 	}
 	return
 }
-func (m *DataUserAdd) DoUpdate() (sql, table string, data []interface{}) {
+func (m *DataUserAdd) DoUpdate() (do bool, sql, table string, data []interface{}) {
+	if len(m.XXX_Update) == 0 {
+		do = false
+		return
+	}
 	var buff bytes.Buffer
 	buff.WriteString("UPDATE ")
 	buff.WriteString("DataUserAdd")
@@ -1386,6 +1622,7 @@ func (m *DataUserAdd) DoUpdate() (sql, table string, data []interface{}) {
 		i += 1
 	}
 	sql = buff.String()
+	do = true
 	return
 }
 
@@ -1550,7 +1787,7 @@ func (m *DataUserBag) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_DataUserBag proto.InternalMessageInfo
 
-func (m *DataUserBag) GetName() string {
+func (m *DataUserBag) GetTableName() string {
 	var buff bytes.Buffer
 	buff.WriteString("DataUserBag")
 	data := strconv.Quote(buff.String())
@@ -1579,19 +1816,37 @@ func (m *DataUserBag) DBInsert() string {
 	buff.WriteString("INSERT INTO ")
 	buff.WriteString("DataUserBag")
 	buff.WriteString("( ")
-	i := 0
 	var key bytes.Buffer
 	var value bytes.Buffer
-	for k, v := range m.XXX_Update {
-		if i > 0 {
-			key.WriteString(", ")
-			value.WriteString(", ")
-		}
-		key.WriteString(k)
-		d := fmt.Sprint(v)
-		value.WriteString(d)
-		i += 1
-	}
+	var d string
+	key.WriteString("UserId")
+	d = fmt.Sprint(m.UserId)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("ItemUID")
+	d = fmt.Sprint(m.ItemUID)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("ItemId")
+	d = fmt.Sprint(m.ItemId)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("Count")
+	d = fmt.Sprint(m.Count)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("CreateTime")
+	d = fmt.Sprint(m.CreateTime)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("Pos")
+	d = fmt.Sprint(m.Pos)
+	value.WriteString(d)
 	buff.WriteString(key.String())
 	buff.WriteString(" ) VALUES ( ")
 	buff.WriteString(value.String())
@@ -1722,14 +1977,64 @@ func (m *DataUserBag) GetFieldID(ks []string) (p []interface{}) {
 	}
 	return
 }
+func (m *DataUserBag) RedisInsert(key interface{}) (table string, data []interface{}) {
+	table = "DataUserBag" + "_" + fmt.Sprint(key)
+	data = make([]interface{}, 2*6)
+	j := 0
+	data[j] = "UserId"
+	data[j+1] = m.UserId
+	j += 2
+	data[j] = "ItemUID"
+	data[j+1] = m.ItemUID
+	j += 2
+	data[j] = "ItemId"
+	data[j+1] = m.ItemId
+	j += 2
+	data[j] = "Count"
+	data[j+1] = m.Count
+	j += 2
+	data[j] = "CreateTime"
+	data[j+1] = m.CreateTime
+	j += 2
+	data[j] = "Pos"
+	data[j+1] = m.Pos
+	j += 2
+	return
+}
 func (m *DataUserBag) RedisSet(key interface{}) (table string, data []interface{}) {
 	table = "DataUserBag" + "_" + fmt.Sprint(key)
-	data = make([]interface{}, 2*len(m.XXX_Update2))
-	j := 0
-	for k, v := range m.XXX_Update2 {
-		data[j] = k
-		data[j+1] = v
+	if nil == m.XXX_Update2 {
+		m.XXX_Update2 = make(map[string]interface{})
+	}
+	if len(m.XXX_Update2) == 0 {
+		data = make([]interface{}, 2*6)
+		j := 0
+		data[j] = "UserId"
+		data[j+1] = m.UserId
 		j += 2
+		data[j] = "ItemUID"
+		data[j+1] = m.ItemUID
+		j += 2
+		data[j] = "ItemId"
+		data[j+1] = m.ItemId
+		j += 2
+		data[j] = "Count"
+		data[j+1] = m.Count
+		j += 2
+		data[j] = "CreateTime"
+		data[j+1] = m.CreateTime
+		j += 2
+		data[j] = "Pos"
+		data[j+1] = m.Pos
+		j += 2
+	} else {
+		data = make([]interface{}, 2*len(m.XXX_Update2))
+		j := 0
+		for k, v := range m.XXX_Update2 {
+			data[j] = k
+			data[j+1] = v
+			j += 2
+		}
 	}
 	return
 }
@@ -1763,7 +2068,11 @@ func (m *DataUserBag) RedisDel(key interface{}) (table string, data []string) {
 	}
 	return
 }
-func (m *DataUserBag) DoUpdate() (sql, table string, data []interface{}) {
+func (m *DataUserBag) DoUpdate() (do bool, sql, table string, data []interface{}) {
+	if len(m.XXX_Update) == 0 {
+		do = false
+		return
+	}
 	var buff bytes.Buffer
 	buff.WriteString("UPDATE ")
 	buff.WriteString("DataUserBag")
@@ -1804,6 +2113,7 @@ func (m *DataUserBag) DoUpdate() (sql, table string, data []interface{}) {
 		i += 1
 	}
 	sql = buff.String()
+	do = true
 	return
 }
 

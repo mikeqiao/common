@@ -54,7 +54,7 @@ func (m *ArrayDataUserBag) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ArrayDataUserBag proto.InternalMessageInfo
 
-func (m *ArrayDataUserBag) GetName() string {
+func (m *ArrayDataUserBag) GetTableName() string {
 	var buff bytes.Buffer
 	buff.WriteString("ArrayDataUserBag")
 	data := strconv.Quote(buff.String())

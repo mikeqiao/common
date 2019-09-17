@@ -54,7 +54,7 @@ func (m *ArrayDataBaseConfig) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ArrayDataBaseConfig proto.InternalMessageInfo
 
-func (m *ArrayDataBaseConfig) GetName() string {
+func (m *ArrayDataBaseConfig) GetTableName() string {
 	var buff bytes.Buffer
 	buff.WriteString("ArrayDataBaseConfig")
 	data := strconv.Quote(buff.String())

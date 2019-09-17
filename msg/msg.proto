@@ -6,9 +6,12 @@ import "base.proto";
 
 message CUserLoginRQ
 {
-	int32 type = 1;
-	string accountID = 2;
-	string password = 3;
+	int32 type = 1;  //1 游客登陆 2 微信登陆 3 手机号登陆
+	string account = 2; //3 phone number
+	string password = 3; // 2 wechat tocken  3 phone  code
+	int32  tid = 4; //平台 1 IOS ，2 安卓 android
+	int32 channel = 5; //渠道号
+	string channelHead = 6;//渠道
 }
 
 message CUserLoginRS
@@ -16,7 +19,7 @@ message CUserLoginRS
 	int32 result = 1;
 	string accountID = 2;
 	string password = 3;
-	DataUserBase user = 4;
+//	DataUserBase user = 4;
 }
 
 message CCreateAccountRQ

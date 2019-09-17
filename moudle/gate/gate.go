@@ -1,8 +1,8 @@
 package gate
 
 import (
-	mod "github.com/mikeqiao/ant/module"
 	ftype "github.com/mikeqiao/common/moudle/functype"
+	mod "github.com/mikeqiao/newant/module"
 )
 
 var M *mod.Module

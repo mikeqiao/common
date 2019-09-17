@@ -60,7 +60,7 @@ func (m *DataBaseConfig) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_DataBaseConfig proto.InternalMessageInfo
 
-func (m *DataBaseConfig) GetName() string {
+func (m *DataBaseConfig) GetTableName() string {
 	var buff bytes.Buffer
 	buff.WriteString("DataBaseConfig")
 	data := strconv.Quote(buff.String())
@@ -89,19 +89,22 @@ func (m *DataBaseConfig) DBInsert() string {
 	buff.WriteString("INSERT INTO ")
 	buff.WriteString("DataBaseConfig")
 	buff.WriteString("( ")
-	i := 0
 	var key bytes.Buffer
 	var value bytes.Buffer
-	for k, v := range m.XXX_Update {
-		if i > 0 {
-			key.WriteString(", ")
-			value.WriteString(", ")
-		}
-		key.WriteString(k)
-		d := fmt.Sprint(v)
-		value.WriteString(d)
-		i += 1
-	}
+	var d string
+	key.WriteString("UserCreatId")
+	d = fmt.Sprint(m.UserCreatId)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("GroupCreatId")
+	d = fmt.Sprint(m.GroupCreatId)
+	value.WriteString(d)
+	key.WriteString(", ")
+	value.WriteString(", ")
+	key.WriteString("ItemCreatId")
+	d = fmt.Sprint(m.ItemCreatId)
+	value.WriteString(d)
 	buff.WriteString(key.String())
 	buff.WriteString(" ) VALUES ( ")
 	buff.WriteString(value.String())
@@ -211,14 +214,46 @@ func (m *DataBaseConfig) GetFieldID(ks []string) (p []interface{}) {
 	}
 	return
 }
+func (m *DataBaseConfig) RedisInsert(key interface{}) (table string, data []interface{}) {
+	table = "DataBaseConfig" + "_" + fmt.Sprint(key)
+	data = make([]interface{}, 2*3)
+	j := 0
+	data[j] = "UserCreatId"
+	data[j+1] = m.UserCreatId
+	j += 2
+	data[j] = "GroupCreatId"
+	data[j+1] = m.GroupCreatId
+	j += 2
+	data[j] = "ItemCreatId"
+	data[j+1] = m.ItemCreatId
+	j += 2
+	return
+}
 func (m *DataBaseConfig) RedisSet(key interface{}) (table string, data []interface{}) {
 	table = "DataBaseConfig" + "_" + fmt.Sprint(key)
-	data = make([]interface{}, 2*len(m.XXX_Update2))
-	j := 0
-	for k, v := range m.XXX_Update2 {
-		data[j] = k
-		data[j+1] = v
+	if nil == m.XXX_Update2 {
+		m.XXX_Update2 = make(map[string]interface{})
+	}
+	if len(m.XXX_Update2) == 0 {
+		data = make([]interface{}, 2*3)
+		j := 0
+		data[j] = "UserCreatId"
+		data[j+1] = m.UserCreatId
 		j += 2
+		data[j] = "GroupCreatId"
+		data[j+1] = m.GroupCreatId
+		j += 2
+		data[j] = "ItemCreatId"
+		data[j+1] = m.ItemCreatId
+		j += 2
+	} else {
+		data = make([]interface{}, 2*len(m.XXX_Update2))
+		j := 0
+		for k, v := range m.XXX_Update2 {
+			data[j] = k
+			data[j+1] = v
+			j += 2
+		}
 	}
 	return
 }
@@ -249,7 +284,11 @@ func (m *DataBaseConfig) RedisDel(key interface{}) (table string, data []string)
 	}
 	return
 }
-func (m *DataBaseConfig) DoUpdate() (sql, table string, data []interface{}) {
+func (m *DataBaseConfig) DoUpdate() (do bool, sql, table string, data []interface{}) {
+	if len(m.XXX_Update) == 0 {
+		do = false
+		return
+	}
 	var buff bytes.Buffer
 	buff.WriteString("UPDATE ")
 	buff.WriteString("DataBaseConfig")
@@ -290,6 +329,7 @@ func (m *DataBaseConfig) DoUpdate() (sql, table string, data []interface{}) {
 		i += 1
 	}
 	sql = buff.String()
+	do = true
 	return
 }
 

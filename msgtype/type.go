@@ -2,7 +2,7 @@ package msgtype
 
 // base
 const (
-	_Datatype uint16 = 1000 + iota
+	_Datatype uint32 = 1000 + iota
 	DataUserAccount
 	DataUserBase
 	DataUserAdd
@@ -11,25 +11,25 @@ const (
 
 //array
 const (
-	_Arraytype uint16 = 2000 + iota
+	_Arraytype uint32 = 2000 + iota
 	ArrayDataUserBag
 )
 
 //config
 const (
-	_Configtype uint16 = 10000 + iota
+	_Configtype uint32 = 10000 + iota
 	DataBaseConfig
 )
 
 //confarray
 const (
-	_ConfArraytype uint16 = 20000 + iota
+	_ConfArraytype uint32 = 20000 + iota
 	ArrayDataBaseConfig
 )
 
 //msg c-s
 const (
-	_CStype uint16 = 30000 + iota
+	_CStype uint32 = 30000 + iota
 	CUserLoginRQ
 	CUserLoginRS
 	CCreateAccountRQ
